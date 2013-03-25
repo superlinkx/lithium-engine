@@ -44,5 +44,8 @@ function SpriteSheet(img_url, rows, columns, margin) {
 }
 
 function Sprite(spritesheet, animations) { //animations is an array of start and length animation properties
-	var currAnimation, 
+	var currAnimation = 0;
+	var currAnimationFrame = 0;
+	// Create methods to return the current frame and the next frame. Next frame will automatically increment the current frame.
+	// Each method should take an animation as a parameter, since we need to know which animation we are grabbing a frame for.
 }
