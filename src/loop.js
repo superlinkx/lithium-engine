@@ -3,10 +3,10 @@ var GameLoop = {};
 GameLoop.render = function(){
 	//Rendering
 	GameLoop.ctx.clearRect(0,0,GameLoop.canvas.width,GameLoop.canvas.height);
-	sheetImg = playerSprites.getSheet();
-	player1 = playerSprites.getSprite("player1");
-	GameLoop.ctx.drawImage(sheetImg.img, player1.xpos, player1.ypos, player1.width, player1.height, 0, 0, player1.width, player1.height);
-	window.requestAnimationFrame(GameLoop.update);
+	var currSprite = spriteSheet.getFrame(currFrame++);
+	if(currSprite)
+		GameLoop.ctx.drawImage(currSprite.img, currSprite.x, currSprite.y, currSprite.w, currSprite.h, 0, 0, currSprite.w, currSprite.h);
+	currFrame %= 20;
 };
 
 GameLoop.update = function(){
@@ -14,6 +14,7 @@ GameLoop.update = function(){
 	//Request Game calc
 	//Rendering
 	GameLoop.render();
+	window.requestAnimationFrame(GameLoop.update);
 };
 
 GameLoop.start = function(canvas){

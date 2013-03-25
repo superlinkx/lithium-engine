@@ -1,35 +1,48 @@
-function SpriteLoader(sheet) {
-	var sprites = {};
+function SpriteSheet(img_url, rows, columns, margin) {
+	this.state = false;
+	var img = new Image();
+	img.src = img_url;
+	var frames = [];
+	var tileWidth, tileHeight, totalTiles;
+	
+	$(img).on("load", null, this, function(event) {
+		tileWidth = img.width / columns;
+		tileHeight = img.height / rows;
+		totalTiles = columns * rows;
 
-	this.getSheet = function() {
-		return sheet;
-	};
+		var currx = 0;
+		var curry = 0;
+		for(i=0; i<totalTiles; i++) {
+			var posx = currx;
+			var posy = curry;
+			currx += tileWidth;
+			if(currx >= img.width) {
+				currx = 0;
+				curry += tileHeight;
+			}
+			outputX = posx + margin;
+			outputY = posy + margin;
+			outputWidth = tileWidth - margin * 2;
+			outputHeight = tileHeight - margin * 2;
+			frames[i] = [outputX, outputY, outputWidth, outputHeight];
+		}
+		event.data.state = true;
+	});
 
-	this.getSprite = function(sprite) {
-		return sprites[sprite];
+	this.getFrame = function(frame) {
+		if(this.state)
+			return {
+				"img": img,
+				"x": frames[frame][0],
+				"y": frames[frame][1],
+				"w": frames[frame][2],
+				"h": frames[frame][3]
+			};
+		else
+			return false;
 	}
-
-	this.getSprites = function() {
-		return sprites;
-	};
-
-	this.setSprite = function(xpos, ypos, width, height, name) {
-		var newSprite = new Sprite(sheet, xpos, ypos, width, height);
-		sprites[name] = newSprite;
-	};
 }
 
-function Sprite(sheet, xpos, ypos, width, height) {
-	this.xpos = sheet.xpos + xpos;
-	this.ypos = sheet.xpos + ypos;
-	this.width = width;
-	this.height = height;
-}
-
-function SpriteSheet(img, xpos, ypos, width, height) {
-	this.xpos = xpos;
-	this.ypos = ypos;
-	this.width = width;
-	this.height = height;
-	this.img = img;
+function Sprite(spritesheet, animations) { //animations is an array of start and length animation properties
+	var currAnimation, 
 }
