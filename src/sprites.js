@@ -43,9 +43,22 @@ function SpriteSheet(img_url, rows, columns, margin) {
 	}
 }
 
-function Sprite(spritesheet, animations) { //animations is an array of start and length animation properties
+function Sprite(spritesheet, animations) { //animations is an array of animation run arrays
 	var currAnimation = 0;
 	var currAnimationFrame = 0;
-	// Create methods to return the current frame and the next frame. Next frame will automatically increment the current frame.
-	// Each method should take an animation as a parameter, since we need to know which animation we are grabbing a frame for.
+
+	this.getCurrFrame = funtion(){
+		return animations[currAnimation][currAnimationFrame];
+	};
+	
+	
+	this.getNextFrame = function(){
+		if(++currAnimationFrame >= animations[currAnimation].length)
+			currAnimation = 0;
+		return animations[currAnimation][currAnimatiomFrame];
+	};
+	
+	this.setAnimation = function(animation){
+		currAnimation = animation;
+	};
 }
