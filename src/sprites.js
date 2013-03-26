@@ -43,22 +43,34 @@ function SpriteSheet(img_url, rows, columns, margin) {
 	}
 }
 
-function Sprite(spritesheet, animations) { //animations is an array of animation run arrays
+function Sprite(spritesheet, animations) { 
+	/* 
+		spritesheet is a SpriteSheet object. animations is an array of animation arrays, containing the following parameters: 
+		first frame, number of frames, framerate (as a divisor of the engine framerate, i.e. 1 is for every frame the engine has, 2 is for every other frame the engine has, etc) 
+	*/
 	var currAnimation = 0;
-	var currAnimationFrame = 0;
+	var currAnimationFrame = animations[currAnimation][0];
 
-	this.getCurrFrame = funtion(){
-		return animations[currAnimation][currAnimationFrame];
+	this.getCurrFrameId = function(){
+		return currAnimationFrame;
 	};
 	
-	
-	this.getNextFrame = function(){
-		if(++currAnimationFrame >= animations[currAnimation].length)
-			currAnimation = 0;
-		return animations[currAnimation][currAnimatiomFrame];
+	this.getNextFrameId = function(){
+		if(++currAnimationFrame > animations[currAnimation][0] + animations[currAnimation][1])
+			currAnimation = animations[currAnimation][0];
+		return currAnimationFrame;
 	};
 	
 	this.setAnimation = function(animation){
 		currAnimation = animation;
+		currAnimationFrame = animations[currAnimation][0];
+	};
+
+	this.getSpriteSheet = function(){
+		return spritesheet;
+	};
+
+	this.getAnimationFramerate = function(){
+		return animations[currAnimation][2];
 	};
 }
