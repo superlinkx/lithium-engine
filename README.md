@@ -1,5 +1,5 @@
-Project Helium Engine
-=====================
+Project Lithium Engine
+======================
 
 An experimental modular html5 game engine designed by Steven Holms
 ------------------------------------------------------------------
