@@ -28,8 +28,11 @@ function SpriteSheet(img_url, rows, columns, margin) {
 		}
 		event.data.state = true;
 	});
+}
 
-	this.getFrame = function(frame) {
+SpriteSheet.prototype = {
+	constructor: SpriteSheet,
+	getFrame: function(frame) {
 		if(this.state)
 			return {
 				"img": img,
@@ -50,27 +53,26 @@ function Sprite(spritesheet, animations) {
 	*/
 	var currAnimation = 0;
 	var currAnimationFrame = animations[currAnimation][0];
+}
 
-	this.getCurrFrameId = function(){
+Sprite.prototype = {
+	constructor: Sprite,
+	getCurrFrameId: function(){
 		return currAnimationFrame;
-	};
-	
-	this.getNextFrameId = function(){
+	},
+	getNextFrameId: function(){
 		if(++currAnimationFrame > animations[currAnimation][0] + animations[currAnimation][1])
 			currAnimation = animations[currAnimation][0];
 		return currAnimationFrame;
-	};
-	
-	this.setAnimation = function(animation){
+	},
+	setAnimation: function(animation){
 		currAnimation = animation;
 		currAnimationFrame = animations[currAnimation][0];
-	};
-
-	this.getSpriteSheet = function(){
+	},
+	getSpriteSheet: function(){
 		return spritesheet;
-	};
-
-	this.getAnimationFramerate = function(){
+	},
+	getAnimationFramerate: function(){
 		return animations[currAnimation][2];
-	};
+	}
 }
