@@ -2,4 +2,4 @@ function ResourceManager() {}
 ResourceManager.prototype = {
 	constructor: ResourceManager
 }
-LithiumEngine.ResourceManager = new ResourceManager;
+lithiumengine.ResourceManager = new ResourceManager;

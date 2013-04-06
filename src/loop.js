@@ -3,10 +3,9 @@ var GameLoop = {};
 GameLoop.render = function(){
 	//Rendering
 	GameLoop.ctx.clearRect(0,0,GameLoop.canvas.width,GameLoop.canvas.height);
-	var currSprite = spriteSheet.getFrame(currFrame++);
-	if(currSprite)
-		GameLoop.ctx.drawImage(currSprite.img, currSprite.x, currSprite.y, currSprite.w, currSprite.h, 0, 0, currSprite.w, currSprite.h);
-	currFrame %= 20;
+	currFrame = zeroSpriteSheet.getFrame(zeroSprite.getNextFrameId());
+	if(currFrame)
+		GameLoop.ctx.drawImage(currFrame.img, currFrame.x, currFrame.y, currFrame.w, currFrame.h, 0, 0, currFrame.w, currFrame.h);
 };
 
 GameLoop.update = function(){

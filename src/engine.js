@@ -1,2 +1,2 @@
 // Implement engine namespace here
-var LithiumEngine = {};
+var lithiumengine = {};
