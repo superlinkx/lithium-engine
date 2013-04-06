@@ -35,11 +35,11 @@ SpriteSheet.prototype = {
 	getFrame: function(frame) {
 		if(this.state)
 			return {
-				"img": img,
-				"x": frames[frame][0],
-				"y": frames[frame][1],
-				"w": frames[frame][2],
-				"h": frames[frame][3]
+				"img": this.img,
+				"x": this.frames[frame][0],
+				"y": this.frames[frame][1],
+				"w": this.frames[frame][2],
+				"h": this.frames[frame][3]
 			};
 		else
 			return false;
@@ -58,21 +58,21 @@ function Sprite(spritesheet, animations) {
 Sprite.prototype = {
 	constructor: Sprite,
 	getCurrFrameId: function(){
-		return currAnimationFrame;
+		return this.currAnimationFrame;
 	},
 	getNextFrameId: function(){
-		if(++currAnimationFrame > animations[currAnimation][0] + animations[currAnimation][1])
-			currAnimation = animations[currAnimation][0];
-		return currAnimationFrame;
+		if(++this.currAnimationFrame > this.animations[currAnimation][0] + this.animations[currAnimation][1])
+			this.currAnimation = this.animations[currAnimation][0];
+		return this.currAnimationFrame;
 	},
 	setAnimation: function(animation){
-		currAnimation = animation;
-		currAnimationFrame = animations[currAnimation][0];
+		this.currAnimation = this.animation;
+		this.currAnimationFrame = this.animations[currAnimation][0];
 	},
 	getSpriteSheet: function(){
-		return spritesheet;
+		return this.spritesheet;
 	},
 	getAnimationFramerate: function(){
-		return animations[currAnimation][2];
+		return this.animations[currAnimation][2];
 	}
 }
