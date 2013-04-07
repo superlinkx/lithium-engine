@@ -29,7 +29,6 @@ function SpriteSheet(img_url, rows, columns, margin) {
 	});
 }
 
-
 SpriteSheet.prototype = {
 	constructor: SpriteSheet,
 	getFrame: function(frame) {
@@ -45,6 +44,9 @@ SpriteSheet.prototype = {
 			return false;
 	}
 }
+
+lithium.Resources.SpriteSheet = SpriteSheet;
+SpriteSheet = null;
 
 function Sprite(animations) { 
 	/* 
@@ -77,3 +79,6 @@ Sprite.prototype = {
 		return this.animations[this.currAnimation][2];
 	}
 }
+
+lithium.Resources.Sprite = Sprite;
+Sprite = null;
