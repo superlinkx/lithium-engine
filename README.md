@@ -1,6 +1,7 @@
 # Project Lithium Engine
 
-## An experimental, modular html5 game engine designed by Steven Holms and Reuben Lifshay
+## An experimental, modular HTML5 game engine designed by Steven Holms and Reuben Lifshay
 
+Currently beginning development. We'll be updating on launch plans in the coming months.
 
-Currently in active development. Nothing works, but we'll be updating soon!
+Currently looking for collaborators.
