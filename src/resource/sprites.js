@@ -3,7 +3,6 @@ function SpriteSheet(img_url, rows, columns, margin) {
 	this.img = new Image();
 	this.img.src = img_url;
 	this.frames = [];
-	this.sprites = [];
 
 	$(this.img).on("load", null, this, function(event) {
 		event.data.tileWidth = event.data.img.width / columns;
