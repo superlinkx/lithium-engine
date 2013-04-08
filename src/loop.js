@@ -3,7 +3,7 @@ var GameLoop = {};
 GameLoop.render = function(){
 	//Rendering
 	GameLoop.ctx.clearRect(0,0,GameLoop.canvas.width,GameLoop.canvas.height);
-	currFrame = zeroSpriteSheet.getFrame(zeroSprite.getNextFrameId());
+	currFrame = zeroSprite.getNextFrame();
 	if(currFrame)
 		GameLoop.ctx.drawImage(currFrame.img, currFrame.x, currFrame.y, currFrame.w, currFrame.h, 0, 0, currFrame.w, currFrame.h);
 };

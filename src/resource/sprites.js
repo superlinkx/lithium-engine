@@ -3,6 +3,7 @@ function SpriteSheet(img_url, rows, columns, margin) {
 	this.img = new Image();
 	this.img.src = img_url;
 	this.frames = [];
+	this.sprites = [];
 
 	$(this.img).on("load", null, this, function(event) {
 		event.data.tileWidth = event.data.img.width / columns;
@@ -48,12 +49,15 @@ SpriteSheet.prototype = {
 lithium.Resources.SpriteSheet = SpriteSheet;
 SpriteSheet = null;
 
-function Sprite(animations) { 
+function Sprite(spritesheet, animations) { 
 	/* 
+		spritesheet is a spritesheet object that the Sprite is a part of
+
 		animations is an array of animation arrays, containing the following parameters: 
 		first frame, number of frames, framerate (as a divisor of the engine framerate, i.e. 1 is for every frame the engine has, 2 is for every other frame the engine has, etc) 
 	*/
 	this.animations = animations;
+	this.spritesheet = spritesheet;
 	this.currAnimation = 0;
 	this.currAnimationFrame = this.animations[this.currAnimation][0];
 }
@@ -77,6 +81,12 @@ Sprite.prototype = {
 	},
 	getAnimationFramerate: function(){
 		return this.animations[this.currAnimation][2];
+	},
+	getCurrFrame: function() {
+		return this.spritesheet.getFrame(this.getCurrFrameId());
+	},
+	getNextFrame: function() {
+		return this.spritesheet.getFrame(this.getNextFrameId());
 	}
 }
 
