@@ -45,16 +45,14 @@ SpriteSheet.prototype = {
 	}
 }
 
-lithium.Resources.SpriteSheet = SpriteSheet;
+lithium.Resource.SpriteSheet = SpriteSheet;
 SpriteSheet = null;
 
 function Sprite(spritesheet, animations) { 
-	/* 
-		spritesheet is a spritesheet object that the Sprite is a part of
+	//spritesheet is a spritesheet object that the Sprite is a part of
+	//animations is an array of animation arrays, containing the following parameters: 
+	//first frame, number of frames, framerate (as a divisor of the engine framerate, i.e. 1 is for every frame the engine has, 2 is for every other frame the engine has, etc) 
 
-		animations is an array of animation arrays, containing the following parameters: 
-		first frame, number of frames, framerate (as a divisor of the engine framerate, i.e. 1 is for every frame the engine has, 2 is for every other frame the engine has, etc) 
-	*/
 	this.animations = animations;
 	this.spritesheet = spritesheet;
 	this.currAnimation = 0;
@@ -89,5 +87,5 @@ Sprite.prototype = {
 	}
 }
 
-lithium.Resources.Sprite = Sprite;
+lithium.Resource.Sprite = Sprite;
 Sprite = null;

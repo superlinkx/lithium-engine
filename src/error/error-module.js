@@ -1,9 +1,9 @@
-function Errors() {
+function Error() {
 	this.messages = [];
 }
 
-Errors.prototype = {
-	constructor: Errors,
+Error.prototype = {
+	constructor: Error,
 	log: function(msg, type, extra) {
 		//msg is required. Contains the message you wish to display.
 		//type is optional. Defaults to a debug message type.
@@ -19,10 +19,10 @@ Errors.prototype = {
 				//warnings
 				break;
 			case "err":
-				//errors
+				//Error
 				break;
 			case "crit":
-				//critical errors
+				//critical Error
 				break;
 			default:
 				//debug
@@ -30,4 +30,4 @@ Errors.prototype = {
 	}
 }
 
-lithium.Errors = new Errors;
+lithium.Error = new Error;

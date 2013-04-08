@@ -1,6 +1,6 @@
-function Resources() {}
-Resources.prototype = {
-	constructor: Resources
+function Resource() {}
+Resource.prototype = {
+	constructor: Resource
 	//Declare Interfaces here
 };
-lithium.Resources = new Resources;
+lithium.Resource = new Resource;
