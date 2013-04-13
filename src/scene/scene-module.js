@@ -1,5 +1,5 @@
-function Scenes() {}
-Scenes.prototype = {
-	constructor: Scenes
+function Scene() {}
+Scene.prototype = {
+	constructor: Scene
 }
-lithium.Scenes = new Scenes;
+lithium.Scene = new Scene;
