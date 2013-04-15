@@ -1,24 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="../third-party/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="../src/shims.js"></script>
-		<script type="text/javascript" src="../src/engine.js"></script>
-		<script type="text/javascript" src="../src/audio/audio-module.js"></script>
-		<script type="text/javascript" src="../src/error/error-module.js"></script>
-		<script type="text/javascript" src="../src/input/input-module.js"></script>
-		<script type="text/javascript" src="../src/physics/physics-module.js"></script>
-		<script type="text/javascript" src="../src/render/render-module.js"></script>
-		<script type="text/javascript" src="../src/resource/resource-module.js"></script>
-		<script type="text/javascript" src="../src/resource/sprites.js"></script>
-		<script type="text/javascript" src="../src/scene/scene-module.js"></script>
-		<script type="text/javascript" src="test.js"></script>
-		<script type="text/javascript" src="../src/loop.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				GameLoop.start($("#output")[0]);
-			});
-		</script>
+		<script type="text/javascript" data-main="../src/main" src="../third-party/require-jquery.js"></script>
 	</head>
 	<body>
 		<canvas id="output"></canvas>

@@ -1,6 +1,7 @@
-function Resource() {}
-Resource.prototype = {
-	constructor: Resource
-	//Declare Interfaces here
-};
-lithium.Resource = new Resource;
+define(["resource/spritesheet", "resource/sprite"], function(spritesheet,sprite) {
+	var Resource = {}; //Declare module namespace
+	//Attach substructures to module here
+	Resource.SpriteSheet = spritesheet;
+	Resource.Sprite = sprite;
+	return Resource; //return module
+});

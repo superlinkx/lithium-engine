@@ -1,26 +1,30 @@
-var GameLoop = {};
+define(function(){
+	var loop = {};
 
-GameLoop.render = function(){
-	//Rendering
-	GameLoop.ctx.clearRect(0,0,GameLoop.canvas.width,GameLoop.canvas.height);
-	currFrame = zeroSprite.getNextFrame();
-	if(currFrame)
-		GameLoop.ctx.drawImage(currFrame.img, currFrame.x, currFrame.y, currFrame.w, currFrame.h, 0, 0, currFrame.w, currFrame.h);
-};
+	loop.render = function(){
+		//Rendering
+		loop.ctx.clearRect(0,0,loop.canvas.width,loop.canvas.height);
+		currFrame = zeroSprite.getNextFrame();
+		if(currFrame)
+			loop.ctx.drawImage(currFrame.img, currFrame.x, currFrame.y, currFrame.w, currFrame.h, 0, 0, currFrame.w, currFrame.h);
+	};
 
-GameLoop.update = function(){
-	//Engine calc
-	//Request Game calc
-	//Rendering
-	GameLoop.render();
-	window.requestAnimationFrame(GameLoop.update);
-};
+	loop.update = function(){
+		//Engine calc
+		//Request Game calc
+		//Rendering
+		loop.render();
+		window.requestAnimationFrame(loop.update);
+	};
 
-GameLoop.start = function(canvas){
-	//init stuff
-	GameLoop.canvas = canvas;
-	GameLoop.canvas.width = 480;
-	GameLoop.canvas.height = 800;
-	GameLoop.ctx = canvas.getContext("2d");
-	window.requestAnimationFrame(GameLoop.update);
-};
+	loop.start = function(canvas){
+		//init stuff
+		loop.canvas = canvas;
+		loop.canvas.width = 480;
+		loop.canvas.height = 800;
+		loop.ctx = canvas.getContext("2d");
+		window.requestAnimationFrame(loop.update);
+	};
+
+	return loop;
+});
