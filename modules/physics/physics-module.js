@@ -1,5 +1,7 @@
 define([/*Substructure calls go here*/], function(/*Don't forget to grab substructure data here*/) {
-	var Render = {}; //Declare module namespace
+	var Physics = { //Declare module namespace
+		"module_name": "physics"
+	};
 	//Attach Substructures here
-	return Render; //Return module
+	return Physics; //Return module
 });

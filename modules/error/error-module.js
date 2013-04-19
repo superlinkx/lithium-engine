@@ -1,5 +1,6 @@
 define([/*Substructure calls go here*/], function(/*Don't forget to grab substructure data here*/) {
 	var Error = { //Declare module namespace
+		"module_name": "error",
 		messages: [],
 		log: function(msg, type, extra) {
 			//msg is required. Contains the message you wish to display.

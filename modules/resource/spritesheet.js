@@ -32,6 +32,7 @@ define(function() {
 	
 	SpriteSheet.prototype = {
 		constructor: SpriteSheet,
+		module_name: "SpriteSheet",
 		getFrame: function(frame) {
 			if(this.state)
 				return {

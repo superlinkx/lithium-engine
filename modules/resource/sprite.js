@@ -12,6 +12,7 @@ define(function() {
 
 	Sprite.prototype = {
 		constructor: Sprite,
+		module_name: "Sprite",
 		getCurrFrameId: function(){
 			return this.currAnimationFrame;
 		},
