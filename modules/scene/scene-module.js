@@ -1,7 +1,8 @@
-define([/*Substructure calls go here*/], function(/*Don't forget to grab substructure data here*/) {
-	var Scene = { //Declare module namespace
-		"module_name": "scene"
-	};
-	//Attach Substructures here
-	return Scene; //Return module
+define(config.substructure_paths("scene"), function() {
+	//Attach substructures to module here
+	var scene = config.attach(arguments);
+	//Declare module namespace
+	scene.module_name = "scene";
+	
+	return scene; //Return module
 });

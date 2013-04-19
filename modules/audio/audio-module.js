@@ -1,7 +1,8 @@
-define([/*Substructure calls go here*/], function(/*Don't forget to grab substructure data here*/) {
-	var Audio = { //Declare module namespace
-		"module_name": "audio"
-	};
-	//Attach Substructures here
-	return Audio; //Return module
+define(config.substructure_paths("audio"), function() {
+	//Attach substructures to module here
+	var audio = config.attach(arguments);
+	//Declare module namespace
+	audio.module_name = "audio";
+
+	return audio; //Return module
 });

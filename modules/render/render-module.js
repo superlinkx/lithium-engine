@@ -1,7 +1,8 @@
-define([/*Substructure calls go here*/], function(/*Don't forget to grab substructure data here*/) {
-	var Render = { //Declare module namespace
-		"module_name": "render"
-	};
-	//Attach Substructures here
-	return Render; //Return module
+define(config.substructure_paths("render"), function() {
+	//Attach substructures to module here
+	var render = config.attach(arguments); 
+	//Declare module namespace
+	render.module_name = "render";
+	
+	return render; //Return module
 });
