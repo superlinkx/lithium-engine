@@ -1,6 +1,7 @@
 require.config({
-	baseUrl: "../src",
-	context: "lithium"
+	paths: {
+		"jquery": "../third-party/jquery"
+	}
 });
 
 require(["jquery", "engine", "loop"], function($, lithium, GameLoop) {
