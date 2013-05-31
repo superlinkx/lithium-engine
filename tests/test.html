@@ -23,8 +23,10 @@
 					[0,8,1],
 					[8,8,1]
 				];
-				zeroSpriteSheet = new lithium.resource.SpriteSheet("testsprites.gif",4,5,5);
-				zeroSprite = new lithium.resource.Sprite(zeroSpriteSheet, spritelist);
+				zeroSpriteSheet = Object.create(lithium.resource.SpriteSheet);
+				zeroSpriteSheet.init("testsprites.gif",4,5,5);
+				zeroSprite = Object.create(lithium.resource.Sprite);
+				zeroSprite.init(zeroSpriteSheet, spritelist);
 				$(function(){
 					GameLoop.start($("#output")[0]);
 				});	

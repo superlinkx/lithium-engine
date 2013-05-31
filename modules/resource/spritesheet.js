@@ -1,9 +1,17 @@
-define(function() {
-	function SpriteSheet(img_url, rows, columns, margin) {
-		this.state = false;
-		this.img = new Image();
+define({
+	module_name: "SpriteSheet",
+	rows: null,
+	columns: null,
+	margin: null,
+	state: false,
+	img: new Image(),
+	frames: [],
+
+	init: function(img_url, rows, columns, margin) {
 		this.img.src = img_url;
-		this.frames = [];
+		this.rows = rows;
+		this.columns = columns;
+		this.margin = margin;
 
 		$(this.img).on("load", null, this, function(event) {
 			event.data.tileWidth = event.data.img.width / columns;
@@ -28,24 +36,17 @@ define(function() {
 			}
 			event.data.state = true;
 		});
+	},
+	getFrame: function(frame) {
+		if(this.state)
+			return {
+				"img": this.img,
+				"x": this.frames[frame][0],
+				"y": this.frames[frame][1],
+				"w": this.frames[frame][2],
+				"h": this.frames[frame][3]
+			};
+		else
+			return false;
 	}
-	
-	SpriteSheet.prototype = {
-		constructor: SpriteSheet,
-		module_name: "SpriteSheet",
-		getFrame: function(frame) {
-			if(this.state)
-				return {
-					"img": this.img,
-					"x": this.frames[frame][0],
-					"y": this.frames[frame][1],
-					"w": this.frames[frame][2],
-					"h": this.frames[frame][3]
-				};
-			else
-				return false;
-		}
-	}
-
-	return SpriteSheet
 });

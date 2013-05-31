@@ -6,19 +6,21 @@ define({
 		"physics": [],
 		"render": [],
 		"resource": ["spritesheet", "sprite"],
-		"scene": []
+		"scene": ["state"]
 	},
+	"path": "modules/",
+	"extension": "-module",
 	"module_paths": function(){
 		var paths = [];
 		for(module in this.modules) {
-			paths.push("modules/"+module+"/"+module+"-module");
+			paths.push(this.path+module+"/"+module+this.extension);
 		}
 		return paths;
 	},
 	"substructure_paths": function(module){
 		var paths = [];
 		for(substructure in this.modules[module]) {
-				paths.push("modules/"+module+"/"+this.modules[module][substructure]);
+				paths.push(this.path+module+"/"+this.modules[module][substructure]);
 		}
 		return paths;
 	},
@@ -28,7 +30,7 @@ define({
 			if(params[param].module_name)
 				module[params[param].module_name] = params[param];
 			else //If the substructure isn't a constructor, get property directly
-				module[params[param].prototype.module_name] = params[param];
+				console.error("Could not attach module: "+params[param]);
 		}
 		return module;
 	}
