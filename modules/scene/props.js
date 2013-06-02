@@ -8,5 +8,11 @@ define({
 	},
 	removeProp: function(prop) {
 		delete this.list[prop.className][prop.id];
+	},
+	getPropsByClassName: function(className) {
+		if(className)
+			return this.list[className];
+		else
+			console.warn("className '"+className+"' does not exist");
 	}
 });

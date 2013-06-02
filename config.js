@@ -6,7 +6,7 @@ define({
 		"physics": [],
 		"render": ["render2d"],
 		"resource": ["spritesheet", "sprite"],
-		"scene": ["state"]
+		"scene": ["state", "props"]
 	},
 	"path": "modules/",
 	"extension": "-module",

@@ -1,32 +1,28 @@
 define(["engine"],function(lithium) {
 	var loop = {
-		renderObject: 0,
-		nextFrame: {},
+		renderProps: lithium.scene.Props.getPropsByClassName("player"),
 		renderer: {},
 		update: function() {
-			loop.nextFrame = zeroSprite.getNextFrame();
-			if(loop.nextFrame) {
-				if(loop.renderObject) {
-					loop.renderer.clearSection(loop.renderObject);
-				}
-				loop.renderObject = {
-					img: loop.nextFrame.img,
-					x: loop.nextFrame.x,
-					y: loop.nextFrame.y,
-					w: loop.nextFrame.w,
-					h: loop.nextFrame.h,
-					targetx: 0,
-					targety: 0,
-					targetw: loop.nextFrame.w,
-					targeth: loop.nextFrame.h
-				}
-				loop.renderer.renderImage(loop.renderObject);
-			}
 			requestAnimationFrame(loop.update);
+			loop.renderProps = lithium.scene.Props.getPropsByClassName("player");
+			renderProps = loop.renderProps;
+			for(var prop in renderProps) {
+				prop = renderProps[prop];
+				if(prop.targetw && prop.targeth)
+					loop.renderer.clearSection(prop);
+				prop.sprite.getNextFrame();
+				if(prop.sprite.isReady) {
+					if(prop.w == "frame")
+						prop.targetw = prop.sprite.w;
+					if(prop.h == "frame")
+						prop.targeth = prop.sprite.h;
+					loop.renderer.renderImage(prop);
+				}
+			}
 		},
 		init: function(canvas) {
 			//init stuff
-			loop.renderer = Object.create(lithium.render.Render2d);
+			loop.renderer = lithium.render.Render2d;
 			loop.renderer.init(canvas, 480, 800);
 			requestAnimationFrame(loop.update);
 		}
