@@ -18,6 +18,8 @@
 			});
 
 			require(["jquery", "engine", "loop"], function($, lithium, GameLoop) {
+				window.GameLoop = GameLoop;
+				window.lithium = lithium;
 				console.log("Engine loaded");
 				spritelist = [
 					[0,8,1],
@@ -28,7 +30,7 @@
 				zeroSprite = Object.create(lithium.resource.Sprite);
 				zeroSprite.init(zeroSpriteSheet, spritelist);
 				$(function(){
-					GameLoop.start($("#output")[0]);
+					GameLoop.init($("#output")[0]);
 				});	
 			});
 		</script>

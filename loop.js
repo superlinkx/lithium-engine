@@ -1,30 +1,35 @@
-define(function(){
-	var loop = {};
-
-	loop.render = function(){
-		//Rendering
-		loop.ctx.clearRect(0,0,loop.canvas.width,loop.canvas.height);
-		currFrame = zeroSprite.getNextFrame();
-		if(currFrame)
-			loop.ctx.drawImage(currFrame.img, currFrame.x, currFrame.y, currFrame.w, currFrame.h, 0, 0, currFrame.w, currFrame.h);
-	};
-
-	loop.update = function(){
-		//Engine calc
-		//Request Game calc
-		//Rendering
-		loop.render();
-		window.requestAnimationFrame(loop.update);
-	};
-
-	loop.start = function(canvas){
-		//init stuff
-		loop.canvas = canvas;
-		loop.canvas.width = 480;
-		loop.canvas.height = 800;
-		loop.ctx = canvas.getContext("2d");
-		window.requestAnimationFrame(loop.update);
-	};
-
+define(["engine"],function(lithium) {
+	var loop = {
+		renderObject: 0,
+		nextFrame: {},
+		renderer: {},
+		update: function() {
+			loop.nextFrame = zeroSprite.getNextFrame();
+			if(loop.nextFrame) {
+				if(loop.renderObject) {
+					loop.renderer.clearSection(loop.renderObject);
+				}
+				loop.renderObject = {
+					img: loop.nextFrame.img,
+					x: loop.nextFrame.x,
+					y: loop.nextFrame.y,
+					w: loop.nextFrame.w,
+					h: loop.nextFrame.h,
+					targetx: 0,
+					targety: 0,
+					targetw: loop.nextFrame.w,
+					targeth: loop.nextFrame.h
+				}
+				loop.renderer.renderImage(loop.renderObject);
+			}
+			requestAnimationFrame(loop.update);
+		},
+		init: function(canvas) {
+			//init stuff
+			loop.renderer = Object.create(lithium.render.render2d);
+			loop.renderer.init(canvas, 480, 800);
+			requestAnimationFrame(loop.update);
+		}
+	}
 	return loop;
 });

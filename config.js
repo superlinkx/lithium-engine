@@ -4,7 +4,7 @@ define({
 		"error": [],
 		"input": [],
 		"physics": [],
-		"render": [],
+		"render": ["render2d"],
 		"resource": ["spritesheet", "sprite"],
 		"scene": ["state"]
 	},
