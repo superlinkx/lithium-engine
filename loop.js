@@ -26,7 +26,7 @@ define(["engine"],function(lithium) {
 		},
 		init: function(canvas) {
 			//init stuff
-			loop.renderer = Object.create(lithium.render.render2d);
+			loop.renderer = Object.create(lithium.render.Render2d);
 			loop.renderer.init(canvas, 480, 800);
 			requestAnimationFrame(loop.update);
 		}
