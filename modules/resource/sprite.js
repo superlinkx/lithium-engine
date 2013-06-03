@@ -39,12 +39,14 @@ define({
 		}
 	},
 	getNextFrame: function() {
-		var frame = this.spritesheet.getFrame(this._getNextFrameId());
-		if(frame) {
-			this._parseFrame(frame);
-			this.isReady = true;
-		} else {
-			this.isReady = false;
+		if(lithium.render.Render2d.tick%this.animations[this.currAnimation][2] == 0) {
+			var frame = this.spritesheet.getFrame(this._getNextFrameId());
+			if(frame) {
+				this._parseFrame(frame);
+				this.isReady = true;
+			} else {
+				this.isReady = false;
+			}
 		}
 	},
 	_getCurrFrameId: function(){

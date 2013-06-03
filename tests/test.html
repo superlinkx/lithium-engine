@@ -21,16 +21,6 @@
 				window.GameLoop = GameLoop;
 				window.lithium = lithium;
 				console.log("Engine loaded");
-				spritelist = [
-					[0,8,1],
-					[8,8,1]
-				];
-				zeroSpriteSheet = Object.create(lithium.resource.SpriteSheet);
-				zeroSpriteSheet.init("testsprites.gif",4,5,5);
-				zeroSprite = Object.create(lithium.resource.Sprite);
-				zeroSprite.init(zeroSpriteSheet, spritelist);
-				zero = {id: 0, className: "player", sprite: zeroSprite, targetx: 0, targety: 0, w: "frame", h: "frame"};
-				lithium.scene.Props.newProp(zero);
 				$(function(){
 					GameLoop.init($("#output")[0]);
 				});	
