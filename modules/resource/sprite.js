@@ -39,7 +39,7 @@ define({
 		}
 	},
 	getNextFrame: function() {
-		if(lithium.render.Render2d.tick%this.animations[this.currAnimation][2] == 0) {
+		if(lithium.tick%this.animations[this.currAnimation][2] == 0) {
 			var frame = this.spritesheet.getFrame(this._getNextFrameId());
 			if(frame) {
 				this._parseFrame(frame);

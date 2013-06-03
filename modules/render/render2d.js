@@ -1,6 +1,5 @@
 define({
 	module_name: "Render2d",
-	tick: 0,
 	init: function(canvas, width, height) {
 		this.canvas = canvas;
 		if(width) {
@@ -10,7 +9,6 @@ define({
 			this.canvas.height = height;
 		}
 		this.ctx = canvas.getContext("2d");
-		requestAnimationFrame(this._loop.bind(this));
 	},
 	clearAll: function() {
 		this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
@@ -28,10 +26,5 @@ define({
 		} catch(err) {
 			console.error("Prop '"+prop.className+" - "+prop.id+"' is not renderable.");
 		}
-	},
-	_loop: function() {
-		requestAnimationFrame(this._loop.bind(this));
-		if(++this.tick > 60)
-			this.tick = 0;
-		}
+	}
 });
