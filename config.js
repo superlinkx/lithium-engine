@@ -34,5 +34,13 @@ define({
 				console.error("Could not attach module: "+params[param]);
 		}
 		return module;
+	},
+	"attach_engine": function(arguments, engine) {
+		for(var module in arguments) {
+			for(var submodule in arguments[module]) {
+				arguments[module][submodule].engine = engine;
+				arguments[module].engine = engine;
+			}
+		}
 	}
 });

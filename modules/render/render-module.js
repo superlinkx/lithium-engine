@@ -3,6 +3,6 @@ define(config.substructure_paths("render"), function() {
 	var render = config.attach(arguments); 
 	//Declare module namespace
 	render.module_name = "render";
-	
+
 	return render; //Return module
 });

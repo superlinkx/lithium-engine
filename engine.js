@@ -1,7 +1,8 @@
 var config = require("config");
 define(config.module_paths(), function(){
 	var engine = config.attach(arguments);
-	// Implement engine namespace here
+	config.attach_engine(arguments, engine);
+
 	engine.tick = 0;
 
 	engine.loop = function(callback, fps) {
@@ -16,5 +17,6 @@ define(config.module_paths(), function(){
 		engine.fps = fps;
 		engine.loop(callback, fps);
 	}
+
 	return engine;
 });
