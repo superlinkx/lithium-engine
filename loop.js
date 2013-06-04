@@ -1,25 +1,32 @@
 define(["engine"],function(lithium) {
 	return {
-		renderProps: lithium.scene.Props.getPropsByClassName("player"),
-		renderer: {},
 		update: function() {
-			this.renderProps = lithium.scene.Props.getPropsByClassName("player");
-			renderProps = this.renderProps;
-			for(var prop in renderProps) {
-				prop = renderProps[prop];
-				if(prop.targetw && prop.targeth)
-					this.renderer.clearSection(prop);
-				prop.sprite.getNextFrame();
-				if(prop.sprite.isReady) {
-					if(prop.targetw == "frame")
-						prop.targetw = prop.sprite.w;
-					if(prop.targeth == "frame")
-						prop.targeth = prop.sprite.h;
-					this.renderer.renderImage(prop);
+			var sprites = lithium.scene.Props.getPropsByClassName("sprite");
+			var backgrounds = lithium.scene.Props.getPropsByClassName("background");
+			for(var background in backgrounds) {
+				background = backgrounds[background];
+				if(lithium.tick%4 == 0) {
+					background.y+=4;
+					if(background.y > 800)
+						background.y = -800;
+					this.renderer.renderBackground(background);
+				}
+			}
+			for(var sprite in sprites) {
+				sprite = sprites[sprite];
+				if(sprite.targetw && sprite.targeth)
+					this.renderer.clearSection(sprite);
+				sprite.sprite.getNextFrame();
+				if(sprite.sprite.isReady) {
+					if(sprite.targetw == "frame")
+						sprite.targetw = sprite.sprite.w;
+					if(sprite.targeth == "frame")
+						sprite.targeth = sprite.sprite.h;
+					this.renderer.renderImage(sprite);
 				}
 			}
 		},
-		init: function(canvas) {
+		init: function(canvas,bgcanvas) {
 			//init stuff
 			spritelist = [
 				[0,4,10]
@@ -28,11 +35,17 @@ define(["engine"],function(lithium) {
 			zeroSpriteSheet.init("testsprites.png",4,5,5);
 			zeroSprite = Object.create(lithium.resource.Sprite);
 			zeroSprite.init(zeroSpriteSheet, spritelist);
-			zero = {id: 0, className: "player", sprite: zeroSprite, targetx: 0, targety: 0, targetw: "frame", targeth: "frame"};
+			bgimg = new Image();
+			bgimg.src = "background.png";
+			zero = {id: 0, className: "sprite", sprite: zeroSprite, targetx: 0, targety: 0, targetw: "frame", targeth: "frame"};
+			bg1 = {id: 0, className: "background", x: 0, y: 0, img: bgimg};
+			bg2 = {id: 1, className: "background", x: 0, y: -800, img: bgimg};
 			lithium.scene.Props.newProp(zero);
+			lithium.scene.Props.newProp(bg1);
+			lithium.scene.Props.newProp(bg2);
 			this.renderer = lithium.render.Render2d;
-			this.renderer.init(canvas, 480, 800);
+			this.renderer.init(canvas, 480, 800, bgcanvas);
 			lithium.init(this.update.bind(this), 60);
 		}
-	}
+	};
 });
