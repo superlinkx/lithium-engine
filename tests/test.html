@@ -23,6 +23,39 @@
 				console.log("Engine loaded");
 				$(function(){
 					GameLoop.init($("#output")[0]);
+					/*canvas = $("#output")[0];
+					renderProps = lithium.scene.Props.getPropsByClassName("player");
+					renderer = {};
+					spritelist = [
+						[0,4,10]
+					];
+					zeroSpriteSheet = Object.create(lithium.resource.SpriteSheet);
+					zeroSpriteSheet.init("testsprites.png",4,5,5);
+					zeroSprite = Object.create(lithium.resource.Sprite);
+					zeroSprite.init(zeroSpriteSheet, spritelist);
+					zero = {id: 0, className: "player", sprite: zeroSprite, targetx: 0, targety: 0, targetw: "frame", targeth: "frame"};
+					lithium.scene.Props.newProp(zero);
+					renderer = lithium.render.Render2d;
+					renderer.init(canvas, 480, 800);
+					lithium.loop(update, 30);
+
+					function update() {
+						console.log("boom");
+						renderProps = lithium.scene.Props.getPropsByClassName("player");
+						for(var prop in renderProps) {
+							prop = renderProps[prop];
+							if(prop.targetw && prop.targeth)
+								renderer.clearSection(prop);
+							prop.sprite.getNextFrame();
+							if(prop.sprite.isReady) {
+								if(prop.targetw == "frame")
+									prop.targetw = prop.sprite.w;
+								if(prop.targeth == "frame")
+									prop.targeth = prop.sprite.h;
+								renderer.renderImage(prop);
+							}
+						}	
+					}*/
 				});	
 			});
 		</script>

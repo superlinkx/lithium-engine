@@ -39,7 +39,7 @@ define({
 		}
 	},
 	getNextFrame: function() {
-		if(lithium.tick%this.animations[this.currAnimation][2] == 0) {
+		if(lithium.tick%this.animations[this.currAnimation][2] == 0) { //FIXIT: Only works when lithium is defined. Need an API to access the host engine tick
 			var frame = this.spritesheet.getFrame(this._getNextFrameId());
 			if(frame) {
 				this._parseFrame(frame);

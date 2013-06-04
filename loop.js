@@ -3,7 +3,6 @@ define(["engine"],function(lithium) {
 		renderProps: lithium.scene.Props.getPropsByClassName("player"),
 		renderer: {},
 		update: function() {
-			requestAnimationFrame(this.update.bind(this));
 			this.renderProps = lithium.scene.Props.getPropsByClassName("player");
 			renderProps = this.renderProps;
 			for(var prop in renderProps) {
@@ -29,11 +28,11 @@ define(["engine"],function(lithium) {
 			zeroSpriteSheet.init("testsprites.png",4,5,5);
 			zeroSprite = Object.create(lithium.resource.Sprite);
 			zeroSprite.init(zeroSpriteSheet, spritelist);
-			zero = {id: 0, className: "player", sprite: zeroSprite, targetx: 0, targety: 0, targetw: 200, targeth: 200};
+			zero = {id: 0, className: "player", sprite: zeroSprite, targetx: 0, targety: 0, targetw: "frame", targeth: "frame"};
 			lithium.scene.Props.newProp(zero);
 			this.renderer = lithium.render.Render2d;
 			this.renderer.init(canvas, 480, 800);
-			requestAnimationFrame(this.update.bind(this));
+			lithium.init(this.update.bind(this), 60);
 		}
 	}
 });

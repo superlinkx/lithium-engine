@@ -3,11 +3,18 @@ define(config.module_paths(), function(){
 	var engine = config.attach(arguments);
 	// Implement engine namespace here
 	engine.tick = 0;
-	engine.loop = function() {
-		requestAnimationFrame(this.loop.bind(this));
-		if(++this.tick > 60)
-			this.tick = 0;
+
+	engine.loop = function(callback, fps) {
+		setTimeout(function(){
+			requestAnimationFrame(engine.loop.bind(this, callback, fps));
+			if(++engine.tick>fps)
+				engine.tick = 0;
+			callback();
+		}, 1000/fps);
 	};
-	engine.loop();
+	engine.init = function(callback, fps) {
+		engine.fps = fps;
+		engine.loop(callback, fps);
+	}
 	return engine;
 });
