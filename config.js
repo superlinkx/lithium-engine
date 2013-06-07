@@ -21,11 +21,18 @@ define({
 	"substructure_paths": function(module){
 		var paths = [];
 		for(var substructure in this.modules[module]) {
-				paths.push(this.path+module+"/"+this.modules[module][substructure]);
+			paths.push(this.path+module+"/"+this.modules[module][substructure]);
 		}
 		return paths;
 	},
 	"attach": function(params) {
+		var module = {};
+		for(var param in params) {
+			if(params[param].module_name)
+				module
+		}
+	},
+	"attach_namespace": function(params) {
 		var module = {};
 		for(var param in params) {
 			if(params[param].module_name)
