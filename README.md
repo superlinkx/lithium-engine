@@ -4,4 +4,4 @@
 
 Currently beginning development. We'll be updating on launch plans in the coming months.
 
-Currently looking for collaborators.
+Currently looking for collaborators. Please email superlinkx@gmail.com if interested.
