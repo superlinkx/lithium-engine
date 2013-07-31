@@ -1,6 +1,6 @@
 define(config.substructure_paths("error"), function() {
 	//Attach substructures to module here
-	var error = config.attach(arguments);
+	var error = config.attach_namespace(arguments);
 	//Declare module namespace
 	error.module_name = "error";
 	error.messages = [];

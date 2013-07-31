@@ -1,6 +1,6 @@
 var config = require("config");
 define(config.module_paths(), function(){
-	var engine = config.attach(arguments);
+	var engine = config.attach_namespace(arguments);
 	config.attach_engine(arguments, engine);
 
 	engine.tick = 1;

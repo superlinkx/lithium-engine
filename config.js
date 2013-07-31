@@ -25,13 +25,6 @@ define({
 		}
 		return paths;
 	},
-	"attach": function(params) {
-		var module = {};
-		for(var param in params) {
-			if(params[param].module_name)
-				module
-		}
-	},
 	"attach_namespace": function(params) {
 		var module = {};
 		for(var param in params) {
