@@ -9,11 +9,15 @@ define({
 	isReady: false,
 	currAnimation: 0,
 	currAnimationFrame: 0,
+	currentTick: null,
 
 	init: function(spritesheet, animations) {
 		//spritesheet is a spritesheet object that the Sprite is a part of
 		//animations is an array of animation arrays, containing the following parameters: 
 		//first frame, number of frames, framerate (as a divisor of the engine framerate, i.e. 1 is for every frame the engine has, 2 is for every other frame the engine has, etc) 
+		$.subscribe("engineTick", function(tick) {
+			this.currentTick = tick;
+		});
 		this.spritesheet = spritesheet;
 		this.animations = animations;
 		this.currAnimationFrame = this.animations[this.currAnimation][0];
@@ -38,7 +42,13 @@ define({
 		}
 	},
 	getNextFrame: function() {
-		if(this.engine.tick%this.animations[this.currAnimation][2] == 0) { //FIXIT: Only works when lithium is defined. Need an API to access the host engine tick
+		if(typeof(this.currentTick) == "undefined") {
+			error = {msg: "Engine Tick not found"};
+			$.publish("postCrit", [error]);
+			return;
+		}
+
+		if(this.currentTick%this.animations[this.currAnimation][2] == 0) {
 			var frame = this.spritesheet.getFrame(this._getNextFrameId());
 			if(frame) {
 				this._parseFrame(frame);

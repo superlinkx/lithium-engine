@@ -5,24 +5,26 @@ define(["lithium"],function(lithium) {
 			var backgrounds = lithium.scene.Props.getPropsByClassName("background");
 			for(var background in backgrounds) {
 				background = backgrounds[background];
-				if(lithium.tick%4 == 0) {
-					background.y+=4;
+				if(lithium.tick%1 == 0) {
+					background.y+=1;
 					if(background.y > 800)
 						background.y = -800;
 					this.renderer.renderBackground(background);
 				}
 			}
 			for(var sprite in sprites) {
-				sprite = sprites[sprite];
-				if(sprite.targetw && sprite.targeth)
-					this.renderer.clearSection(sprite);
-				sprite.sprite.getNextFrame();
-				if(sprite.sprite.isReady) {
-					if(sprite.targetw == "frame")
-						sprite.targetw = sprite.sprite.w;
-					if(sprite.targeth == "frame")
-						sprite.targeth = sprite.sprite.h;
-					this.renderer.renderImage(sprite);
+				if(lithium.tick%8==0) {
+					sprite = sprites[sprite];
+					if(sprite.targetw && sprite.targeth)
+						this.renderer.clearSection(sprite);
+					sprite.sprite.getNextFrame();
+					if(sprite.sprite.isReady) {
+						if(sprite.targetw == "frame")
+							sprite.targetw = sprite.sprite.w;
+						if(sprite.targeth == "frame")
+							sprite.targeth = sprite.sprite.h;
+						this.renderer.renderImage(sprite);
+					}
 				}
 			}
 		},

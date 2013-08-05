@@ -4,58 +4,81 @@ define([], function() {
 	
 	error.messages = [];
 	error.loglevel = 4; //loglevels are 0 - 4, crit through debug
-	error.log = function(type, msg, extra) {
-		//msg is required. Contains the message you wish to display.
-		//type is optional. Defaults to a debug message type.
-		//extra is optional. Is an object. When implemented, will contain additional logging information that isn't meant to be part of the actual message.
+	
+	//Error posting methods
+	//Receive a data object
+	//Data Object definition:
+	//data.msg - Message you wish to output
+	//data.extra - Optional object. Contains arbitrary data in object notation.
 
-		if(this.loglevel >= 0)
-			if(type == "crit") {
-				console.error("CRITICAL: "+msg);
-				if(extra)
-					console.error(extra);
-				this.pushMsg(type, msg, extra);
-			}
-
-		if(this.loglevel >= 1)
-			if(type == "err") {
-				console.error("ERROR: "+msg);
-				if(extra)
-					console.error(extra);
-				this.pushMsg(type, msg, extra);
-			}
-
-		if(this.loglevel >= 2)
-			if(type == "warn") {
-				console.warn("WARNING: "+msg);
-				if(extra)
-					console.warn(extra);
-				this.pushMsg(type, msg, extra);
-			}
-
-		if(this.loglevel >= 3)
-			if(type == "info") {
-				console.log("INFO: "+msg);
-				if(extra)
-					console.log(extra);
-				this.pushMsg(type, msg, extra);
-			}
-			
-		if(this.loglevel >= 4)
-			if(type == "debug") {
-				console.log("DEBUG: "+msg);
-				if(extra)
-					console.log(extra);
-				this.pushMsg(type, msg, extra);
-			}
+	error.crit = function(data) {
+		if(this.loglevel >= 0) {
+			console.error("CRITICAL: "+data.msg);
+			if(data.extra)
+				console.error(data.extra);
+			this.messages.push(data);
+			//Engine shutdown
+			$.publish("haltEngine");
+		}
 	};
 
-	error.pushMsg = function(type, msg, extra) {
-		if(extra)
-			this.messages.push({"type": type, "message": msg, "extra": extra});
-		else
-			this.messages.push({"type": type, "message": msg});
-	}
+	error.err = function(data) {
+		if(this.loglevel >= 1) {
+			console.error("ERROR: "+data.msg);
+			if(data.extra)
+				console.error(data.extra);
+			this.messages.push(data);
+		}
+	};
+
+	error.warn = function(data) { 
+		if(this.loglevel >= 2) {
+			console.warn("WARNING: "+data.msg);
+			if(data.extra)
+				console.warn(data.extra);
+			this.messages.push(data);
+		}
+	};
+
+	error.info = function(data) { 
+		if(this.loglevel >= 3) {
+			console.log("INFO: "+data.msg);
+			if(data.extra)
+				console.log(data.extra);
+			this.messages.push(data);
+		}
+	};
+
+	error.dbg = function(data) {
+		if(this.loglevel >= 4) {
+			console.log("DEBUG: "+data.msg);
+			if(data.extra)
+				console.log(data.extra);
+			this.messages.push(data);
+		}
+	};
+
+	//Subscribe to listeners
+	$.subscribe("postDbg", function(data) {
+		data.type = "dbg";
+		error.dbg(data);
+	});
+	$.subscribe("postInfo", function(data) {
+		data.type = "info";
+		error.info(data);
+	});
+	$.subscribe("postWarn", function(data) {
+		data.type="warn";
+		error.warn(data);
+	});
+	$.subscribe("postErr", function(data) {
+		data.type="err";
+		error.err(data);
+	});
+	$.subscribe("postCrit", function(data) {
+		data.type="crit";
+		error.crit(data);
+	});
 
 	return error; //Return module
 });

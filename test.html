@@ -5,7 +5,11 @@
 		<script type="text/javascript">
 			require.config({
 				paths: {
-					"jquery": "third-party/jquery"
+					"jquery": "third-party/jquery",
+					"pubsub": "third-party/pubsub"
+				},
+				shim: {
+					"pubsub": ['jquery']
 				},
 				packages: [
 					{
@@ -15,10 +19,11 @@
 				]
 			});
 
-			require(["jquery", "lithium", "loop"], function($, lithium, GameLoop) {
+			require(["jquery", "pubsub", "lithium", "loop"], function($, pubsub, lithium, GameLoop) {
 				window.GameLoop = GameLoop;
 				window.lithium = lithium;
 				console.log("Engine loaded");
+				$.subscribe("Hello", function(){console.log("hello")});
 				$(function(){
 					GameLoop.init($("#output")[0], $("#background")[0]);
 				});	
