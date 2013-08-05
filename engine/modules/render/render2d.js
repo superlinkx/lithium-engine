@@ -1,5 +1,4 @@
 define({
-	module_name: "Render2d",
 	init: function(canvas, width, height, bgcanvas) {
 		this.canvas = canvas;
 		if(width) {

@@ -1,5 +1,4 @@
 define({
-	module_name: "SpriteSheet",
 	rows: null,
 	columns: null,
 	margin: null,

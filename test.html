@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="../third-party/require.js"></script>
+		<script type="text/javascript" src="third-party/require.js"></script>
 		<script type="text/javascript">
 			require.config({
-				baseUrl: "../",
 				paths: {
-					"jquery": "./third-party/jquery",
-					"engine": "./engine",
-					"config": "./config"
+					"jquery": "third-party/jquery"
 				},
-				shim: {
-					"engine": {
-						"deps": ["config"]
+				packages: [
+					{
+						name: 'lithium',
+						location: 'engine'
 					}
-				}
+				]
 			});
 
-			require(["jquery", "engine", "loop"], function($, lithium, GameLoop) {
+			require(["jquery", "lithium", "loop"], function($, lithium, GameLoop) {
 				window.GameLoop = GameLoop;
 				window.lithium = lithium;
 				console.log("Engine loaded");

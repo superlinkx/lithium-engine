@@ -1,4 +1,4 @@
-define(["engine"],function(lithium) {
+define(["lithium"],function(lithium) {
 	return {
 		update: function() {
 			var sprites = lithium.scene.Props.getPropsByClassName("sprite");
@@ -32,11 +32,11 @@ define(["engine"],function(lithium) {
 				[0,4,10]
 			];
 			zeroSpriteSheet = Object.create(lithium.resource.SpriteSheet);
-			zeroSpriteSheet.init("testsprites.png",4,5,5);
+			zeroSpriteSheet.init("testimg/testsprites.png",4,5,5);
 			zeroSprite = Object.create(lithium.resource.Sprite);
 			zeroSprite.init(zeroSpriteSheet, spritelist);
 			bgimg = new Image();
-			bgimg.src = "background.png";
+			bgimg.src = "testimg/background.png";
 			zero = {id: 0, className: "sprite", sprite: zeroSprite, targetx: 0, targety: 0, targetw: "frame", targeth: "frame"};
 			bg1 = {id: 0, className: "background", x: 0, y: 0, img: bgimg};
 			bg2 = {id: 1, className: "background", x: 0, y: -800, img: bgimg};

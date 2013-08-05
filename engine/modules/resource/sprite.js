@@ -1,5 +1,4 @@
 define({
-	module_name: "Sprite",
 	spritesheet: null,
 	animations: null,
 	img: null,

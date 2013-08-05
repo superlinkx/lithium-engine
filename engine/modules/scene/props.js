@@ -1,5 +1,4 @@
 define({
-	module_name: "Props",
 	list: {},
 	newProp: function(prop) {
 		if(!this.list[prop.className])

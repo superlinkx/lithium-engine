@@ -1,8 +1,8 @@
-define(config.substructure_paths("error"), function() {
+define([], function() {
 	//Attach substructures to module here
-	var error = config.attach_namespace(arguments);
-	//Declare module namespace
-	error.module_name = "error";
+	var error = {};
+	//Declare substructures like so: error.substructure = require("modules/error/substructure");
+	
 	error.messages = [];
 	error.loglevel = 4; //loglevels are 0 - 4, crit through debug
 	error.log = function(type, msg, extra) {
