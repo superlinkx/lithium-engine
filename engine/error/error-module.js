@@ -1,7 +1,6 @@
 define([], function() {
 	//Attach substructures to module here
 	var error = {};
-	//Declare substructures like so: error.substructure = require("modules/error/substructure");
 	
 	error.messages = [];
 	error.loglevel = 4; //loglevels are 0 - 4, crit through debug

@@ -3,42 +3,42 @@ require.config({
 	packages: [
 		{
 			name: 'audio',
-			location: './modules/audio',
+			location: './audio',
 			main: "audio-module"
 		},
 		{
 			name: 'error',
-			location: './modules/error',
+			location: './error',
 			main: "error-module"
 		},
 		{
 			name: 'input',
-			location: './modules/input',
+			location: './input',
 			main: "input-module"
 		},
 		{
 			name: 'physics',
-			location: './modules/physics',
+			location: './physics',
 			main: "physics-module"
 		},
 		{
 			name: 'render',
-			location: './modules/render',
+			location: './render',
 			main: "render-module"
 		},
 		{
 			name: 'resource',
-			location: './modules/resource',
+			location: './resource',
 			main: "resource-module"
 		},
 		{
 			name: 'scene',
-			location: './modules/scene',
+			location: './scene',
 			main: "scene-module"
 		},
 		{
 			name: 'shims',
-			location: './modules/shims',
+			location: './shims',
 			main: "shims-module"
 		}
 	]
