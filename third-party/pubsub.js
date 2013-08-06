@@ -8,8 +8,7 @@
 	http://dojofoundation.org/license for more information.
 
 */	
-
-;(function(d){
+define(["jquery"], function(d){
 
 	// the topic/subscription hash
 	var cache = {};
@@ -72,5 +71,4 @@
 			}
 		});
 	};
-
-})(jQuery);
+});

@@ -8,9 +8,6 @@
 					"jquery": "third-party/jquery",
 					"pubsub": "third-party/pubsub"
 				},
-				shim: {
-					"pubsub": ['jquery']
-				},
 				packages: [
 					{
 						name: 'lithium',
@@ -23,7 +20,6 @@
 				window.GameLoop = GameLoop;
 				window.lithium = lithium;
 				console.log("Engine loaded");
-				$.subscribe("Hello", function(){console.log("hello")});
 				$(function(){
 					GameLoop.init($("#output")[0], $("#background")[0]);
 				});	
