@@ -17,6 +17,11 @@ require.config({
 			main: "input-module"
 		},
 		{
+			name: 'parser',
+			location: './parser',
+			main: "parser-module"
+		},
+		{
 			name: 'physics',
 			location: './physics',
 			main: "physics-module"
@@ -44,12 +49,13 @@ require.config({
 	]
 });
 
-define(["audio","error","input","physics","render","resource","scene","shims"], function(){
+define(["audio","error","input","parser","physics","render","resource","scene","shims"], function(){
 	var engine = {};
 
 	engine.audio = require("audio");
 	engine.error = require("error");
 	engine.input = require("input");
+	engine.parser = require("parser");
 	engine.physics = require("physics");
 	engine.render = require("render");
 	engine.resource = require("resource");

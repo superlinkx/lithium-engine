@@ -58,9 +58,15 @@ define([], function() {
 		this.messages.push(data);
 	};
 
-	error.changeLogLevel = function(loglevel) {
-		error.loglevel = loglevel;
-		$.publish("loglevelChanged", [loglevel]);
+	error.changeLogLevel = function(loglevel) { //TODO: Needs to check that the new loglevel is valid
+		loglevel = parseInt(loglevel);
+		if(loglevel >= 0 && loglevel < 5) {
+			error.loglevel = loglevel;
+			$.publish("loglevelChanged", [loglevel]);
+		} else {
+			$.publish("postErr", {msg: "Invalid loglevel"});
+			return -1;
+		}
 	};
 
 	error.updateLoglevelSub = function(loglevel) {
@@ -79,7 +85,7 @@ define([], function() {
 			case 1:
 				this.postErr = $.subscribe("postErr", function(data) {error.err(data);});
 			case 0:
-				this.postCrit = $.subscribe("postCrit", function(data){error.crit(data);});
+				this.postCrit = $.subscribe("postCrit", function(data) {error.crit(data);});
 				break;
 			default:
 				return -1;
