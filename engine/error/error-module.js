@@ -4,23 +4,14 @@ define([], function() {
 	
 	error.messages = [];
 	error.loglevel = 4; //loglevels are 0 - 4, crit through debug
-	error.postCrit = [];
-	error.postErr = [];
-	error.postWarn = [];
-	error.postInfo = [];
-	error.postDbg = [];
 	
 	//Error posting methods
-	//Receive a data object
-	//Data Object definition:
-	//data.msg - Message you wish to output
-	//data.extra - Optional object. Contains arbitrary data in object notation.
+	//Receive an err object
 
 	error.crit = function(data) {
 		data.type = "crit";
-		console.error("CRITICAL: "+data.msg);
-		if(data.extra)
-			console.error(data.extra);
+		console.error("CRITICAL ("+data.constructor.name+"): "+data.message);
+		console.error(data);
 		this.messages.push(data);
 		//Engine shutdown
 		$.publish("haltEngine");
@@ -28,33 +19,29 @@ define([], function() {
 
 	error.err = function(data) {
 		data.type = "err";
-		console.error("ERROR: "+data.msg);
-		if(data.extra)
-			console.error(data.extra);
+		console.error("ERROR ("+data.constructor.name+"): "+data.message);
+		console.error(data);
 		this.messages.push(data);
 	};
 
 	error.warn = function(data) {
 		data.type = "warn";
-		console.warn("WARNING: "+data.msg);
-		if(data.extra)
-			console.warn(data.extra);
+		console.warn("WARNING ("+data.constructor.name+"): "+data.message);
+		console.warn(data);
 		this.messages.push(data);
 	};
 
 	error.info = function(data) {
 		data.type = "info";
-		console.log("INFO: "+data.msg);
-		if(data.extra)
-			console.log(data.extra);
+		console.log("INFO ("+data.constructor.name+"): "+data.message);
+		console.log(data)
 		this.messages.push(data);
 	};
 
 	error.dbg = function(data) {
 		data.type = "dbg";
-		console.log("DEBUG: "+data.msg);
-		if(data.extra)
-			console.log(data.extra);
+		console.log("DEBUG ("+data.constructor.name+"): "+data.message);
+		console.log(data);
 		this.messages.push(data);
 	};
 
